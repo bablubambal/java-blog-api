@@ -55,7 +55,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.csrf()
 		.disable()
 		.authorizeHttpRequests()
-		.antMatchers("/api/v1/auth/login").permitAll()
+//		.antMatchers("/api/v1/auth/login").permitAll() to allow only one url below is to allow all url of same pattern
+		.antMatchers("/api/v1/auth/**").permitAll()
 		.antMatchers(HttpMethod.GET).permitAll()
 		.anyRequest()
 		.authenticated()
