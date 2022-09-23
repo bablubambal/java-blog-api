@@ -1,0 +1,22 @@
+Swagger 
+
+api documentation and other thingss:
+
+
+
+
+URL--> to consume apps
+
+problems solves:
+    how many apis
+    which apis
+    api method
+    request what
+    response what
+
+
+
+    for the understanding...
+    swaagger tool
+
+    http://localhost:9090/swagger-ui/index.html

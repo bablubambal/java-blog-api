@@ -14,6 +14,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.codewithdurgesh.blog.security.CustomUserDetailService;
 import com.codewithdurgesh.blog.security.JwtAuthenticationEntryPoint;
@@ -22,6 +23,7 @@ import com.codewithdurgesh.blog.security.JwtAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
+@EnableWebMvc
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
@@ -33,6 +35,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
 	private JwtAuthenticationFilter jwtAuthenticationFilter;
+	
+	public static final String[] PUBLIC_URLS = {
+			"/v3/api-docs",
+			"/v2/api-docs",
+			"/swagger-resources/**",
+			"/swagger-ui/**",
+			"/webjars/**"
+			
+			
+	
+	};
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -57,6 +70,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.authorizeHttpRequests()
 //		.antMatchers("/api/v1/auth/login").permitAll() to allow only one url below is to allow all url of same pattern
 		.antMatchers("/api/v1/auth/**").permitAll()
+		.antMatchers("/v3/api-docs").permitAll()
+		 .antMatchers(PUBLIC_URLS).permitAll()
 		.antMatchers(HttpMethod.GET).permitAll()
 		.anyRequest()
 		.authenticated()
