@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.codewithdurgesh.blog.exceptions.ApiException;
 import com.codewithdurgesh.blog.payloads.JwtAuthRequest;
 import com.codewithdurgesh.blog.payloads.JwtAuthResponse;
 import com.codewithdurgesh.blog.security.JwtTokenHelper;
@@ -62,7 +63,7 @@ public class AuthController {
 				this.authenticationManager.authenticate(authenticationToken);
 			} catch (BadCredentialsException e) {
 				System.out.println("Invalid detailssss");
-				throw new Exception("invalid username and pwd");
+				throw new ApiException("invalid username and pwd");
 			}
 			
 		
