@@ -1,0 +1,66 @@
+Jwt authentication architecture and steps:
+
+
+jwt => json web token
+mostly used to secure rest apis
+best way to communicate security between client and server securely
+*****jwt follows a statelesss authentication mechanism
+
+
+
+
+
+Idealogy:
+
+me --------------------------> shop
+                             
+                             counter..
+                              counter take token and take saman from shop....
+
+            Examples::
+            shop with token
+------------------------------------------------------------------------------------------------
+                    architecture of Jwt
+            
+            Header          payload             signature
+
+            x.y.z
+
+            algo+type:          Information about claims                encoded header+encoded payload +key(signature)
+
+------------------------------------------------------------------------------------------------------------------------------
+
+        HOW TO USE JWT WITH SPRING security:
+
+        1.  Add dependency (io.jsonwebtoken) ---Jwt dependency
+        2.  Create a class JWT authenticationEntryPoint implements AuthenticationEntryPoint  --> method hoga (usko override karegye) (Interface)
+        when method executes: 
+***** Unauthorized accesss
+        when an exception is generated or throw due to when an anauthorized person try to access the system or api that require authentication
+        3.  Create JwtTokenHelper --> many method related to token generated
+        has many mehtods  like
+          token generated
+          validation
+          expriychecking
+        4.add one more class   --> **JwtAuthenticationFilter extends OnceRequestFilter
+        kind of middleware.... before request hit api...
+
+        work in filter:
+         a. Get jwt token from request,format
+         b. validate
+         c. get user from token
+         d. load user assocaited with token.
+         e. set spring secutiy authentication 
+         after that we need move to request....
+        5. Create JwtAuthResponse: 
+        --> response class for token*** date, type date expired..
+      ******  6.**
+      Configure Jwt in spring security config....
+      all files ->
+      entry point 
+      filter
+
+
+      7. Create login ap;i to return token --> authenticate -- generate tokend -- return token,
+
+      8 Testing the application............superbb**
